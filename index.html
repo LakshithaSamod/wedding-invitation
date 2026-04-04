@@ -50,6 +50,7 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- Preload critical assets for instant loading -->
+    <link rel="preload" href="images/letter-page-bg.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="images/texture.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="images/seal2.png" as="image" fetchpriority="high">
 
@@ -102,7 +103,17 @@
             src: url(https://fonts.gstatic.com/s/greatvibes/v18/6q1c0ofG6NKsEhAc2eh-3Y5q.woff2) format('woff2');
         }
 
-        /* Inline texture CSS for instant rendering */
+        /* Inline CSS for instant rendering */
+
+        /* Letter overlay page background */
+        #letter-overlay {
+            background-image: url('images/letter-page-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Envelope and letter textures */
         .envelope-back::before {
             content: '';
             position: absolute;

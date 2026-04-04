@@ -82,12 +82,11 @@ body.no-scroll {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg,
-        #f9f3eb 0%,
-        #fef9f3 25%,
-        #fffbf7 50%,
-        #fef7f0 75%,
-        #f8f0e8 100%);
+    background-image: url('images/letter-page-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,16 +96,34 @@ body.no-scroll {
     touch-action: none;
 }
 
+/* Subtle overlay for better contrast */
+#letter-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(249, 243, 235, 0.3) 0%,
+        rgba(254, 249, 243, 0.2) 50%,
+        rgba(248, 240, 232, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
 #letter-overlay.opening {
     animation: overlayFadeOut 1s ease 1.5s forwards;
 }
 
+/* Ensure envelope stays on top of background */
 .envelope-container {
     position: relative;
     width: 450px;
     height: 320px;
     perspective: 1000px;
     animation: envelopeFloat 3s ease-in-out infinite;
+    z-index: 2;
 }
 
 @keyframes envelopeFloat {
@@ -1579,7 +1596,7 @@ body.no-scroll {
     text-align: center;
     background: linear-gradient(rgba(250, 247, 245, 0.8), rgba(244, 228, 230, 0.8)),
                 url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&auto=format&fit=crop') center/cover no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     overflow: hidden;
 }
 
@@ -2554,6 +2571,13 @@ body.no-scroll {
 
 /* Tablets and below */
 @media (max-width: 768px) {
+    /* Fix hero background on mobile */
+    #hero {
+        background-attachment: scroll !important;
+        background-size: cover;
+        background-position: center center;
+    }
+
     .couple-names {
         font-size: 4rem;
     }

@@ -48,6 +48,9 @@ const scratchParticlesContainer = document.getElementById('scratch-particles');
 const loadingScreen = document.getElementById('loading-screen');
 const backgroundMusic = document.getElementById('background-music');
 
+// Prevent body scroll when letter overlay is active
+document.body.classList.add('no-scroll');
+
 let isScratching = false;
 let scratchPercentage = 0;
 let sealBroken = false;
@@ -425,6 +428,8 @@ if (scratchCanvas) {
 
                 setTimeout(() => {
                     letterOverlay.style.display = 'none';
+                    // Re-enable body scroll when letter overlay is removed
+                    document.body.classList.remove('no-scroll');
                     startLoadingSequence();
                 }, 1500);
             }, 1500);

@@ -36,6 +36,27 @@ body {
     position: relative;
 }
 
+/* Prevent body scroll when letter overlay is active */
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* iOS Safari specific fix for no-scroll */
+@supports (-webkit-touch-callout: none) {
+    body.no-scroll {
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+        -webkit-overflow-scrolling: auto;
+    }
+}
+
 .content-section .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -72,6 +93,8 @@ body {
     justify-content: center;
     z-index: 20000;
     animation: overlayFadeIn 0.8s ease;
+    overflow: hidden;
+    touch-action: none;
 }
 
 #letter-overlay.opening {
@@ -888,6 +911,29 @@ body {
         0 0 40px rgba(255, 255, 255, 0.8);
     letter-spacing: 0.5px;
     white-space: nowrap;
+}
+
+/* Mobile optimizations for letter overlay */
+@media (max-width: 768px) {
+    #letter-overlay {
+        /* Ensure full viewport coverage on mobile */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile browsers */
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent pull-to-refresh on mobile */
+    #letter-overlay * {
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: auto;
+    }
 }
 
 /* Responsive */

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Gallery Styles Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .demo-section {
+            margin-bottom: 60px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .demo-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #7a9c8e;
+            text-align: center;
+        }
+
+        /* ===============================
+           STYLE 0: HORIZONTAL PORTRAIT STACK
+           =============================== */
+        .horizontal-portrait-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%);
+            border-radius: 16px;
+            padding: 20px 0;
+        }
+
+        .horizontal-portrait-track {
+            display: flex;
+            gap: 20px;
+            padding: 0 20px;
+            animation: horizontalPortraitScroll 25s linear infinite;
+        }
+
+        .portrait-card {
+            min-width: 240px;
+            width: 240px;
+            height: 340px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .portrait-card:hover {
+            transform: scale(1.05);
+        }
+
+        .portrait-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portrait-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        @keyframes horizontalPortraitScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Pause on hover/touch */
+        .horizontal-portrait-container:hover .horizontal-portrait-track {
+            animation-play-state: paused;
+        }
+
+        /* ===============================
+           STYLE 1: CAROUSEL/SLIDER
+           =============================== */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        /* ===============================
+           STYLE 2: VERTICAL STACK
+           =============================== */
+        .vertical-stack {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .vertical-track {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: verticalScroll 20s linear infinite;
+        }
+
+        .vertical-item {
+            min-height: 180px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .vertical-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        @keyframes verticalScroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        /* ===============================
+           STYLE 3: CARD STACK ANIMATION
+           =============================== */
+        .card-stack {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        .card {
+            position: absolute;
+            width: 90%;
+            height: 300px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 16px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .card.exit {
+            transform: translate(-50%, -50%) translateX(-150%) rotate(-20deg);
+            opacity: 0;
+        }
+
+        .card.stack-2 {
+            transform: translate(-50%, -50%) scale(0.95) translateY(10px);
+            z-index: 2;
+            opacity: 0.7;
+        }
+
+        .card.stack-3 {
+            transform: translate(-50%, -50%) scale(0.9) translateY(20px);
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .card.active {
+            z-index: 3;
+        }
+
+        /* ===============================
+           STYLE 4: COVERFLOW 3D
+           =============================== */
+        .coverflow-container {
+            perspective: 1000px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .coverflow-track {
+            display: flex;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.6s ease;
+        }
+
+        .coverflow-item {
+            min-width: 200px;
+            height: 250px;
+            margin: 0 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.6s ease;
+            transform: rotateY(45deg) scale(0.8);
+            opacity: 0.5;
+        }
+
+        .coverflow-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .coverflow-item.center {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .coverflow-item.left {
+            transform: rotateY(45deg) scale(0.8);
+        }
+
+        .coverflow-item.right {
+            transform: rotateY(-45deg) scale(0.8);
+        }
+
+        /* ===============================
+           STYLE 5: FULL SCREEN SLIDESHOW
+           =============================== */
+        .fullscreen-slideshow {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .fullscreen-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            font-size: 2rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .fullscreen-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fullscreen-slide.active {
+            opacity: 1;
+        }
+
+        /* ===============================
+           STYLE 6: KEN BURNS EFFECT
+           =============================== */
+        .ken-burns {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .ken-burns-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .ken-burns-slide.active {
+            opacity: 1;
+        }
+
+        .ken-burns-slide img {
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            animation: kenBurnsZoom 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurnsZoom {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            100% {
+                transform: scale(1.2) translate(-5%, -5%);
+            }
+        }
+
+        .ken-burns-slide div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Control Buttons */
+        .controls {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .control-btn {
+            padding: 8px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 6px;
+            background: #7a9c8e;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            background: #6b8a7e;
+        }
+
+        .note {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Mobile Gallery Auto-Scroll Styles</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">7 Different Styles | Swipe or touch to pause auto-scroll</p>
+
+    <!-- STYLE 0: HORIZONTAL PORTRAIT STACK -->
+    <div class="demo-section">
+        <h2 class="demo-title">⭐ Horizontal Portrait Stack (Recommended)</h2>
+        <div class="horizontal-portrait-container" id="horizontalPortrait">
+            <div class="horizontal-portrait-track">
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Photo 1</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">Photo 2</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">Photo 3</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">Photo 4</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">Photo 5</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">Photo 6</div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Photo 1</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">Photo 2</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">Photo 3</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">Photo 4</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">Photo 5</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="portrait-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">Photo 6</div>
+                </div>
+            </div>
+        </div>
+        <div class="note">✨ Best for: Wedding photos, elegant look, portrait orientation, smooth continuous scroll.</div>
+    </div>
+
+    <!-- STYLE 1: CAROUSEL -->
+    <div class="demo-section">
+        <h2 class="demo-title">1. Carousel/Slider (Most Popular)</h2>
+        <div class="carousel-container" id="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">Photo 4</div>
+                <div class="carousel-slide" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">Photo 5</div>
+            </div>
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="note">✨ Best for: Wedding sites, portfolios. Clean, familiar, easy to control.</div>
+    </div>
+
+    <!-- STYLE 2: VERTICAL STACK -->
+    <div class="demo-section">
+        <h2 class="demo-title">2. Vertical Stack Scroll</h2>
+        <div class="vertical-stack" id="vertical">
+            <div class="vertical-track">
+                <div class="vertical-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">Photo 4</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">Photo 5</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="vertical-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+                <div class="vertical-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+            </div>
+        </div>
+        <div class="note">✨ Best for: Many photos, continuous browsing, social media feel.</div>
+    </div>
+
+    <!-- STYLE 3: CARD STACK -->
+    <div class="demo-section">
+        <h2 class="demo-title">3. Card Stack Animation (Tinder Style)</h2>
+        <div class="card-stack" id="cardStack">
+            <div class="card active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+            <div class="card stack-2" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+            <div class="card stack-3" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+        </div>
+        <div class="note">✨ Best for: Modern apps, interactive feel, unique presentation.</div>
+    </div>
+
+    <!-- STYLE 4: COVERFLOW -->
+    <div class="demo-section">
+        <h2 class="demo-title">4. Coverflow 3D (Apple Style)</h2>
+        <div class="coverflow-container" id="coverflow">
+            <div class="coverflow-track">
+                <div class="coverflow-item left" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">1</div>
+                <div class="coverflow-item left" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">2</div>
+                <div class="coverflow-item center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">3</div>
+                <div class="coverflow-item right" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">4</div>
+                <div class="coverflow-item right" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">5</div>
+            </div>
+        </div>
+        <div class="note">✨ Best for: Premium look, highlight center photo, 3D depth.</div>
+    </div>
+
+    <!-- STYLE 5: FULLSCREEN SLIDESHOW -->
+    <div class="demo-section">
+        <h2 class="demo-title">5. Full-Screen Fadeshow</h2>
+        <div class="fullscreen-slideshow" id="fullscreen">
+            <div class="fullscreen-slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+            <div class="fullscreen-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+            <div class="fullscreen-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+            <div class="fullscreen-slide" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">Photo 4</div>
+        </div>
+        <div class="note">✨ Best for: Dramatic presentation, focus on each photo, immersive.</div>
+    </div>
+
+    <!-- STYLE 6: KEN BURNS -->
+    <div class="demo-section">
+        <h2 class="demo-title">6. Ken Burns Effect (Zoom + Fade)</h2>
+        <div class="ken-burns" id="kenBurns">
+            <div class="ken-burns-slide active">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Photo 1</div>
+            </div>
+            <div class="ken-burns-slide">
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">Photo 2</div>
+            </div>
+            <div class="ken-burns-slide">
+                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">Photo 3</div>
+            </div>
+        </div>
+        <div class="note">✨ Best for: Cinematic feel, documentary style, adds motion to stills.</div>
+    </div>
+
+    <script>
+        // ===== HORIZONTAL PORTRAIT STACK =====
+        const horizontalPortraitContainer = document.getElementById('horizontalPortrait');
+        const horizontalPortraitTrack = document.querySelector('.horizontal-portrait-track');
+        let isPausedHorizontal = false;
+        let pauseTimeoutHorizontal;
+
+        function pauseHorizontalScroll() {
+            isPausedHorizontal = true;
+            horizontalPortraitTrack.style.animationPlayState = 'paused';
+
+            clearTimeout(pauseTimeoutHorizontal);
+            pauseTimeoutHorizontal = setTimeout(() => {
+                isPausedHorizontal = false;
+                horizontalPortraitTrack.style.animationPlayState = 'running';
+            }, 4000);
+        }
+
+        horizontalPortraitContainer.addEventListener('touchstart', pauseHorizontalScroll);
+        horizontalPortraitContainer.addEventListener('mousedown', pauseHorizontalScroll);
+
+        // ===== CAROUSEL =====
+        let carouselIndex = 0;
+        const carousel = document.querySelector('.carousel-track');
+        const dots = document.querySelectorAll('.carousel-dots .dot');
+        const totalSlides = 5;
+
+        function moveCarousel() {
+            carouselIndex = (carouselIndex + 1) % totalSlides;
+            carousel.style.transform = `translateX(-${carouselIndex * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === carouselIndex);
+            });
+        }
+
+        let carouselInterval = setInterval(moveCarousel, 3000);
+
+        document.getElementById('carousel').addEventListener('touchstart', () => {
+            clearInterval(carouselInterval);
+            setTimeout(() => {
+                carouselInterval = setInterval(moveCarousel, 3000);
+            }, 4000);
+        });
+
+        // ===== CARD STACK =====
+        const cardStackPhotos = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+        ];
+        let cardIndex = 0;
+
+        function moveCardStack() {
+            const cards = document.querySelectorAll('.card-stack .card');
+            const activeCard = cards[0];
+
+            activeCard.classList.add('exit');
+
+            setTimeout(() => {
+                activeCard.remove();
+
+                cardIndex = (cardIndex + 1) % cardStackPhotos.length;
+                const nextIndex = (cardIndex + 2) % cardStackPhotos.length;
+
+                const newCard = document.createElement('div');
+                newCard.className = 'card stack-3';
+                newCard.style.background = cardStackPhotos[nextIndex];
+                newCard.textContent = `Photo ${nextIndex + 1}`;
+                document.getElementById('cardStack').appendChild(newCard);
+
+                const allCards = document.querySelectorAll('.card-stack .card');
+                allCards[0].className = 'card active';
+                allCards[1].className = 'card stack-2';
+                allCards[2].className = 'card stack-3';
+            }, 600);
+        }
+
+        let cardInterval = setInterval(moveCardStack, 3000);
+
+        // ===== COVERFLOW =====
+        let coverflowIndex = 2;
+        const coverflowItems = document.querySelectorAll('.coverflow-item');
+
+        function updateCoverflow() {
+            coverflowIndex = (coverflowIndex + 1) % coverflowItems.length;
+            coverflowItems.forEach((item, i) => {
+                item.classList.remove('center', 'left', 'right');
+                if (i === coverflowIndex) {
+                    item.classList.add('center');
+                } else if (i < coverflowIndex) {
+                    item.classList.add('left');
+                } else {
+                    item.classList.add('right');
+                }
+            });
+        }
+
+        setInterval(updateCoverflow, 3000);
+
+        // ===== FULLSCREEN SLIDESHOW =====
+        let fullscreenIndex = 0;
+        const fullscreenSlides = document.querySelectorAll('.fullscreen-slide');
+
+        function moveFullscreen() {
+            fullscreenSlides[fullscreenIndex].classList.remove('active');
+            fullscreenIndex = (fullscreenIndex + 1) % fullscreenSlides.length;
+            fullscreenSlides[fullscreenIndex].classList.add('active');
+        }
+
+        setInterval(moveFullscreen, 3500);
+
+        // ===== KEN BURNS =====
+        let kenBurnsIndex = 0;
+        const kenBurnsSlides = document.querySelectorAll('.ken-burns-slide');
+
+        function moveKenBurns() {
+            kenBurnsSlides[kenBurnsIndex].classList.remove('active');
+            kenBurnsIndex = (kenBurnsIndex + 1) % kenBurnsSlides.length;
+            kenBurnsSlides[kenBurnsIndex].classList.add('active');
+        }
+
+        setInterval(moveKenBurns, 8000);
+    </script>
+</body>
+</html>

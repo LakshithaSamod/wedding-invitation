@@ -1,0 +1,24 @@
+{
+  "name": "Lakshitha & Supuni Wedding Invitation",
+  "short_name": "L&S Wedding",
+  "description": "Wedding invitation for Lakshitha and Supuni - June 3rd, 2027",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5ede4",
+  "theme_color": "#f5ede4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

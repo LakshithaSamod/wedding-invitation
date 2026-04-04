@@ -49,10 +49,107 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Google Fonts -->
+    <!-- Preload critical assets for instant loading -->
+    <link rel="preload" href="images/texture.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="images/seal2.png" as="image" fetchpriority="high">
+
+    <!-- Google Fonts with preload for critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/greatvibes/v18/6q1c0ofG6NKsEhAc2eh-3Y5q.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/cormorant/v21/H4c2BXOCl9bbnla_nHIq6oq.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Alex+Brush&family=Cormorant:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Critical inline CSS for instant texture and font rendering -->
+    <style>
+        /* Prevent font flash - use system fonts immediately */
+        body {
+            font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
+        }
+        .letter-names, .couple-names, .letter-text {
+            font-family: 'Great Vibes', cursive, 'Brush Script MT', cursive;
+        }
+
+        /* Fix font flash for L & S seal text */
+        .heart-seal text {
+            font-family: 'Great Vibes', 'Brush Script MT', cursive !important;
+            transition: font-family 0s; /* Instant font change, no jarring animation */
+            text-rendering: optimizeLegibility; /* Better font rendering */
+            -webkit-font-smoothing: antialiased; /* Smoother fonts on webkit */
+        }
+
+        /* Reduce seal visibility during font load to minimize flash */
+        .wax-seal-base {
+            animation: fadeInSeal 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeInSeal {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Ensure all SVG text uses fallback fonts during load */
+        svg text {
+            font-family: 'Great Vibes', 'Brush Script MT', cursive;
+        }
+
+        /* Preload fonts using CSS font-face with font-display: swap */
+        @font-face {
+            font-family: 'Great Vibes Preload';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap; /* Show fallback immediately, swap when ready */
+            src: url(https://fonts.gstatic.com/s/greatvibes/v18/6q1c0ofG6NKsEhAc2eh-3Y5q.woff2) format('woff2');
+        }
+
+        /* Inline texture CSS for instant rendering */
+        .envelope-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/texture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: multiply;
+        }
+        .envelope-flap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/texture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+            clip-path: polygon(0 0, 50% 75%, 100% 0);
+            mix-blend-mode: multiply;
+        }
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/texture.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: multiply;
+        }
+    </style>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -205,7 +302,7 @@
 
                         <!-- Initials -->
                         <text x="100" y="110"
-                              font-family="'Great Vibes', cursive"
+                              font-family="'Great Vibes', 'Brush Script MT', cursive"
                               font-size="36"
                               fill="#ffffff"
                               text-anchor="middle"
